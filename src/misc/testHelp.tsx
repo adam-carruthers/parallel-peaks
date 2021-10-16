@@ -1,12 +1,12 @@
 import React from "react";
 import { render as oldRender } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import type { InitialEntry } from "history";
+import type { LocationDescriptor } from "history";
 import { Provider } from "react-redux";
 import { store } from "../data/store";
 
 interface TestOptions {
-  initialEntries?: InitialEntry[];
+  initialEntries?: LocationDescriptor[];
 }
 
 const render = (
