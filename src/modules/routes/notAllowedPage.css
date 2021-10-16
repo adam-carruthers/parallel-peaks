@@ -1,0 +1,17 @@
+.bg-not-allowed {
+    background: url("bgNotAllowed.png") center / cover no-repeat;
+}
+
+.box-not-allowed {
+    width: 90%;
+    max-width: 480px;
+    min-height: 300px;
+}
+
+.box-not-allowed h1 {
+    font-size: 140px;
+}
+
+.box-not-allowed p {
+    font-size: 25px;
+}

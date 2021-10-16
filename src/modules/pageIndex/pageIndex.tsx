@@ -17,7 +17,7 @@ const PageIndex = () => (
         <h1>About us</h1>
         <p className="font-alice">
           In this section we will explain who we are and stuff. When I get round
-          to it that is...
+          to it that is... {/* TODO: Get round to it lol */}
         </p>
       </div>
     </section>
