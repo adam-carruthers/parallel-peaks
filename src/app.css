@@ -1,0 +1,167 @@
+/* Define global variables and styles */
+/* TODO: Get sass and get bootstrap defaults */
+
+:root {
+  --pastel-yellow: #ffc30f;
+  --pastel-red: #ff5e53;
+  --pastel-blue: #55adff;
+  --pastel-green: #78ff85;
+  --pastel-black: #323232;
+  --pastel-yellow-d: #b0a42d;
+  --pastel-red-d: #bf453d;
+  --pastel-blue-d: #326999;
+  --pastel-green-d: #37913c;
+  --pastel-black-d: #131313;
+  --pp-nav-height: 69px;
+}
+
+body {
+  font-family: "Bree Serif", serif;
+}
+
+.bg-pastel-blue {
+  background-color: var(--pastel-blue);
+}
+
+.bg-pastel-red {
+  background-color: var(--pastel-red);
+}
+
+.bg-pastel-yellow {
+  background-color: var(--pastel-yellow);
+}
+
+.bg-pastel-green {
+  background: var(--pastel-green);
+}
+
+.bg-blue-waves {
+  background: url("./misc/just-waves.png");
+}
+
+.font-alice {
+  font-family: Alice, serif;
+}
+
+.font-sans-serif {
+  font-family: var(--font-family-sans-serif);
+}
+
+.pp-box-shadow {
+  box-shadow: 7px 7px rgb(0, 0, 0) !important;
+}
+
+.pp-box-shadow-small {
+  box-shadow: 3px 3px #000;
+}
+
+.pp-dashed-border {
+  border: dashed black 5px;
+}
+
+.pp-button {
+  border-radius: 0;
+}
+
+.pp-first-section {
+  width: 100%;
+  min-height: 100vh;
+  overflow: auto;
+  padding-top: var(--pp-nav-height);
+}
+
+.pp-brand-shadow {
+  text-shadow: 2px 2px #000000, 4px 4px var(--indigo);
+}
+
+.pp-form-error {
+  display: block;
+  text-align: center;
+  border-radius: 0.25em;
+  font-size: 15px;
+}
+
+.make-children-blocky {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.make-children-blocky > * {
+  box-shadow: 3px 3px #000;
+  display: inline-block;
+  padding: 0.25rem;
+  min-height: 33px;
+  border-radius: 0;
+}
+
+/* Buttons */
+
+.btn {
+  transition: none;
+}
+
+.btn-pp,
+.btn-pp-ls {
+  border-radius: 0;
+}
+
+.btn-group {
+  border-radius: 0.25rem;
+}
+
+.btn-group.pp-box-shadow-small .btn:not(:last-child) {
+  box-shadow: 2px 0 #000;
+}
+
+.btn-py {
+  background-color: var(--pastel-yellow);
+}
+.btn-py:hover {
+  background-color: var(--pastel-yellow-d);
+}
+
+.btn-pr {
+  background-color: var(--pastel-red);
+}
+.btn-pr:hover {
+  background-color: var(--pastel-red-d);
+}
+
+.btn-pb {
+  background-color: var(--pastel-blue);
+}
+.btn-pb:hover {
+  background-color: var(--pastel-blue-d);
+}
+
+.btn-pk {
+  background-color: var(--pastel-black);
+  color: var(--white);
+}
+.btn-pk:hover {
+  background-color: var(--pastel-black-d);
+  color: var(--light);
+}
+
+.btn.pp-box-shadow-small:active,
+.btn.pp-box-shadow:active,
+.btn-pp:active,
+.btn-pp-ls:active {
+  box-shadow: none !important;
+}
+
+.btn-group.pp-box-shadow-small .btn:active,
+.btn.pp-box-shadow-small:active,
+.btn-pp:active {
+  transform: translate(3px, 3px);
+}
+
+.btn-group.pp-box-shadow-small .btn {
+  z-index: 0;
+}
+
+.btn.pp-box-shadow:active,
+.btn-pp-ls:active {
+  transform: translate(7px, 7px);
+}

@@ -1,0 +1,17 @@
+#pp-navbar {
+    margin: 0 13px 0 13px;
+    box-shadow: 7px 7px rgb(0,0,0);
+    background-color: var(--blue);
+    position: absolute;
+}
+
+#pp-nav-brand {
+    font-weight: 600;
+    font-size: 24px;
+    text-shadow: 2px 2px #000000, 4px 4px var(--indigo);
+}
+
+#pp-nav-items {
+    font-size: 20px;
+    font-weight: 100;
+}
