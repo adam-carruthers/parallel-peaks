@@ -1,14 +1,25 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import userReducer from "./userSlice";
+import userReducer, { UserState } from "./userSlice";
 
-export const store = configureStore({
-  reducer: {
-    user: userReducer,
-  },
-});
+export interface RootState {
+  user: UserState;
+}
+
+interface CreateStoreOptions {
+  preloadedState?: Partial<RootState>;
+}
+
+export const createStore = (options?: CreateStoreOptions) =>
+  configureStore({
+    reducer: {
+      user: userReducer,
+    },
+    ...options,
+  });
+
+export const store = createStore();
 
 export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   RootState,

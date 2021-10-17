@@ -1,4 +1,5 @@
 import { baseUrl } from "./apiUtils";
+import type { User } from "./userSlice";
 
 export const userRefreshUrl = `${baseUrl}/api/auth/user`;
 
@@ -14,4 +15,7 @@ export const getUserRefreshFetchArgs = (token: string) => [
   },
 ];
 
-export const login;
+export interface LoginRequestResponse {
+  token: string;
+  user: User;
+}
