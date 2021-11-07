@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import { APIError } from "../../data/apiUtils";
 import { useAppDispatch } from "../../data/hooks";
 import { loginApi } from "../../data/userApi";
@@ -21,6 +21,7 @@ const PageLoginInner = () => {
 
   const dispatch = useAppDispatch();
   const history = useHistory();
+  const location = useLocation<{ redirectUrl?: string }>();
 
   const onLoginSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
@@ -37,7 +38,7 @@ const PageLoginInner = () => {
       try {
         const loginJson = await loginApi(username, password);
         dispatch(login(loginJson));
-        history.push("/home");
+        history.push(location.state.redirectUrl || "/home");
       } catch (e) {
         setLoginStatus("error");
         if (e instanceof APIError) {
