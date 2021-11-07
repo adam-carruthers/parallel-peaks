@@ -19,6 +19,7 @@ afterAll(() => server.close());
 describe("the login page", () => {
   test("can login the user", async () => {
     server.use(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       rest.post(baseUrl + "/api/auth/login", (req: any, res, ctx) => {
         expect(req.body?.username).toEqual("goodyguts");
         expect(req.body?.password).toEqual("correct-pass");
