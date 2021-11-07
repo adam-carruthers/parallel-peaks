@@ -17,12 +17,13 @@ const Routes = () => (
     </Route>
     <Route path="/logout">
       <PageLogout />
-
     </Route>
 
     <Route path="/home">
       {/* TODO: Make protected routes */}
-      Home
+      <div className="pp-first-section">
+        <h1>HOME TO BE BUILT</h1>
+      </div>
     </Route>
 
     <Route path="*">
