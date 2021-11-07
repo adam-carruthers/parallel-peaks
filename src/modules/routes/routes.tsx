@@ -1,12 +1,11 @@
 import React from "react";
 
 import { Switch, Route } from "react-router";
+import RouteNeedLogin from "./routeNeedsLogin";
 
 import PageIndex from "../pageIndex/pageIndex";
 import PageLogin from "../pageLogin/pageLogin";
-import PageLogout from "../pageLogout/pageLogout";
 import Page404 from "./page404";
-import RouteNeedLogin from "./routeNeedsLogin";
 
 const Routes = () => (
   <Switch>
@@ -15,9 +14,6 @@ const Routes = () => (
     </Route>
     <Route path="/login">
       <PageLogin />
-    </Route>
-    <Route path="/logout">
-      <PageLogout />
     </Route>
 
     <RouteNeedLogin path="/home">

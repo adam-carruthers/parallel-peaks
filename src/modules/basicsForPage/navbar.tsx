@@ -1,9 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useAppSelector } from "../../data/hooks";
-import { isUserLoggedIn, userUsername } from "../../data/userSlice";
+import { Link, useHistory } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../data/hooks";
+import { isUserLoggedIn, logout, userUsername } from "../../data/userSlice";
 
 import "./navbar.css";
+
+const LogoutButton = () => {
+  const dispatch = useAppDispatch();
+  const history = useHistory();
+
+  return (
+    <a
+      className="nav-link"
+      onClick={(e) => {
+        e.preventDefault();
+        dispatch(logout());
+        history.push("/");
+      }}
+    >
+      Logout
+    </a>
+  );
+};
 
 const NavbarUserSection = () => {
   const userLoggedIn = useAppSelector(isUserLoggedIn);
@@ -34,9 +52,7 @@ const NavbarUserSection = () => {
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/logout" className="nav-link">
-            Logout
-          </Link>
+          <LogoutButton />
         </li>
       </>
     );
