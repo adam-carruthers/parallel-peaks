@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "../../misc/testHelp";
+import { render, screen } from "../../misc/testUtils";
 import App from "../../App";
 
 describe("the routes", () => {
