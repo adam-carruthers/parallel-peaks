@@ -5,7 +5,6 @@ import {
   fireEvent,
   waitForElement,
 } from "../../misc/testUtils";
-import PageLogin from "./pageLogin";
 import App from "../../App";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
