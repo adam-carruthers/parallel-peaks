@@ -10,8 +10,9 @@ const LogoutButton = () => {
   const history = useHistory();
 
   return (
-    <a
-      className="nav-link"
+    <button
+      type="button"
+      className="btn btn-link nav-link"
       onClick={(e) => {
         e.preventDefault();
         dispatch(logout());
@@ -19,7 +20,7 @@ const LogoutButton = () => {
       }}
     >
       Logout
-    </a>
+    </button>
   );
 };
 
