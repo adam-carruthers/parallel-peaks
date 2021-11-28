@@ -1,20 +1,25 @@
 import React from "react";
 
 import { Switch, Route } from "react-router";
-import RouteNeedLogin from "./routeNeedsLogin";
+import { RouteNeedLogin, RouteRedirectIfLoggedIn } from "./specialRoutes";
 
 import PageIndex from "../pageIndex/pageIndex";
 import PageLogin from "../pageLogin/pageLogin";
 import Page404 from "./page404";
+import PageSignUp from "../pageSignUp/pageSignUp";
 
 const Routes = () => (
   <Switch>
     <Route exact path="/">
       <PageIndex />
     </Route>
-    <Route path="/login">
+
+    <RouteRedirectIfLoggedIn path="/login">
       <PageLogin />
-    </Route>
+    </RouteRedirectIfLoggedIn>
+    <RouteRedirectIfLoggedIn path="/sign-up">
+      <PageSignUp />
+    </RouteRedirectIfLoggedIn>
 
     <RouteNeedLogin path="/home">
       <div className="pp-first-section">

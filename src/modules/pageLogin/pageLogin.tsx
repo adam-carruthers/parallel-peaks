@@ -21,7 +21,7 @@ const PageLoginInner = () => {
 
   const dispatch = useAppDispatch();
   const history = useHistory();
-  const location = useLocation<{ redirectUrl?: string }>();
+  const location = useLocation<undefined | { redirectUrl?: string }>();
 
   const onLoginSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
@@ -38,8 +38,9 @@ const PageLoginInner = () => {
       try {
         const loginJson = await loginApi(username, password);
         dispatch(login(loginJson));
-        history.push(location.state.redirectUrl || "/home");
+        history.push(location?.state?.redirectUrl || "/home");
       } catch (e) {
+        console.error(e);
         setLoginStatus("error");
         if (e instanceof APIError) {
           setLoginError(e.message);
