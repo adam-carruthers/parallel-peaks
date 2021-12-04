@@ -1,4 +1,4 @@
-import { APIError, baseUrl } from "./apiUtils";
+import { APIError, APIFormError, baseUrl } from "./apiUtils";
 import type { User } from "./userSlice";
 
 export const authenticatedHeaders = (token: string) => ({
@@ -38,4 +38,42 @@ export const loginApi = async (
   }
 
   return loginJson as LoginRequestResponse;
+};
+
+export const registerApi = async (
+  username: string,
+  email: string,
+  password1: string,
+  password2: string
+): Promise<void> => {
+  const response = await fetch(`${baseUrl}/api/auth/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username,
+      email,
+      password1,
+      password2,
+    }),
+  });
+  const responseJson = await response.json();
+
+  if (response.status !== 201) {
+    console.error(responseJson);
+    // Only use the error sent from the server if it has one of the following properties
+    if (
+      ["username", "email", "password1", "password2", "non_field_errors"].some(
+        (property) => property in responseJson
+      )
+    )
+      throw new APIFormError(responseJson);
+    else
+      throw new APIFormError({
+        non_field_errors: [
+          "Something seems wrong, check your answers and please try again later.",
+        ],
+      });
+  }
 };

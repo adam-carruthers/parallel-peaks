@@ -94,8 +94,9 @@ const PageLogin = () => (
   <section className="pp-first-section bg-blue-waves d-flex flex-column align-items-center">
     <div className="flex-grow-1 p-3" />
     <div className="box-login pp-box-shadow bg-white">
-      <h1 className="pp-box-shadow pp-brand-shadow bg-primary">PP</h1>
+      <h1 className="pp-box-shadow pp-brand-shadow bg-primary big-logo">PP</h1>
       <div className="mb-3 text-center text-small">
+        <h1 className="mb-3">Login</h1>
         <span className="text-muted">Not got an account yet? </span>
         <Link to="/sign-up">Sign up here.</Link>
       </div>

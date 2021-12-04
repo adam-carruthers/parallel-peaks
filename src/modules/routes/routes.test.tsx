@@ -104,7 +104,7 @@ describe("the routesNeedLogin component", () => {
       target: { value: "correct-pass" },
     });
 
-    fireEvent.click(screen.getByText("Submit"));
+    fireEvent.click(screen.getByRole("button", { name: "Submit" }));
 
     await waitForElement(() => screen.getByText(/goodyguts/));
 

@@ -1,0 +1,10 @@
+.box-sign-up {
+  width: 90%;
+  max-width: 340px;
+  padding: 40px;
+}
+
+.box-sign-up label {
+  margin-bottom: 3px;
+  color: var(--dark);
+}

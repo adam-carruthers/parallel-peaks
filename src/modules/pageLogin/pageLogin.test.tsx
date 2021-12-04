@@ -54,7 +54,7 @@ describe("the login page", () => {
       target: { value: "correct-pass" },
     });
 
-    fireEvent.click(screen.getByText("Submit"));
+    fireEvent.click(screen.getByRole("button", { name: "Submit" }));
 
     await waitForElement(() => screen.getByText(/goodyguts/)); // If this fails it might be because the expects in the server have failed
 
@@ -84,7 +84,7 @@ describe("the login page", () => {
       target: { value: "causeserror'; DROP TABLE users;" },
     });
 
-    fireEvent.click(screen.getByText("Submit"));
+    fireEvent.click(screen.getByRole("button", { name: "Submit" }));
 
     await waitForElement(() => screen.getByText(/There was an error/)); // If this fails it might be because the expects in the server have failed
 
@@ -113,7 +113,7 @@ describe("the login page", () => {
       target: { value: "bad-pass" },
     });
 
-    fireEvent.click(screen.getByText("Submit"));
+    fireEvent.click(screen.getByRole("button", { name: "Submit" }));
 
     await waitForElement(() => screen.getByText(/AAAA/));
   });
