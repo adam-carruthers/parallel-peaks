@@ -80,5 +80,6 @@ export const isUserLoggedIn = (state: RootState) => state.user !== null;
 export const userUsername = (state: RootState) => state.user?.username || "";
 export const userIsMatcher = (state: RootState) =>
   state.user?.is_matcher || false;
+export const userMatchEntry = (state: RootState) => state.user?.matching_entry;
 
 export default userSlice.reducer;

@@ -38,7 +38,7 @@ const PageLoginInner = () => {
       try {
         const loginJson = await loginApi(username, password);
         dispatch(login(loginJson));
-        history.push(location.state.redirectUrl || "/home");
+        history.push(location.state?.redirectUrl || "/home");
       } catch (e) {
         setLoginStatus("error");
         if (e instanceof APIError) {
