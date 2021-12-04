@@ -7,6 +7,7 @@ import PageIndex from "../pageIndex/pageIndex";
 import PageLogin from "../pageLogin/pageLogin";
 import Page404 from "./page404";
 import PageSignUp from "../pageSignUp/pageSignUp";
+import PageConfirmEmail from "../pageSignUp/pageConfirmEmail";
 
 const Routes = () => (
   <Switch>
@@ -20,6 +21,9 @@ const Routes = () => (
     <RouteRedirectIfLoggedIn path="/sign-up">
       <PageSignUp />
     </RouteRedirectIfLoggedIn>
+    <Route path="/confirm-email">
+      <PageConfirmEmail />
+    </Route>
 
     <RouteNeedLogin path="/home">
       <div className="pp-first-section">

@@ -77,3 +77,25 @@ export const registerApi = async (
       });
   }
 };
+
+export const confirmEmailApi = async (token: string): Promise<void> => {
+  const response = await fetch(`${baseUrl}/api/auth/verify-email`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      key: token,
+    }),
+  });
+  const responseJson = response.json();
+
+  if (response.status !== 200) {
+    console.error(responseJson);
+    throw new APIError(
+      "The verify email code given was not correct. " +
+        "Please try clicking the link in your email again and if that fails then please try logging in again. " +
+        "This will send you a new verify email link."
+    );
+  }
+};
