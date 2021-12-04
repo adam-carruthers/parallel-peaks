@@ -1,5 +1,6 @@
 import React, { useCallback, useRef, useState } from "react";
 import { useHistory, useLocation } from "react-router";
+import { Link } from "react-router-dom";
 import { APIError } from "../../data/apiUtils";
 import { useAppDispatch } from "../../data/hooks";
 import { loginApi } from "../../data/userApi";
@@ -81,7 +82,7 @@ const PageLoginInner = () => {
           <input
             className="btn btn-primary btn-block"
             type="submit"
-            value={loginStatus === "loading" ? "Loading..." : "Submit"}
+            value={loginStatus === "loading" ? "Loading..." : "Login"}
           />
         </div>
       </fieldset>
@@ -94,6 +95,10 @@ const PageLogin = () => (
     <div className="flex-grow-1 p-3" />
     <div className="box-login pp-box-shadow bg-white">
       <h1 className="pp-box-shadow pp-brand-shadow bg-primary">PP</h1>
+      <div className="mb-3 text-center text-small">
+        <span className="text-muted">Not got an account yet? </span>
+        <Link to="/sign-up">Sign up here.</Link>
+      </div>
       <PageLoginInner />
     </div>
     <div className="flex-grow-1 p-4" />
