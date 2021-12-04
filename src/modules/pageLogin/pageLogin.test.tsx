@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  render,
-  screen,
-  fireEvent,
-  waitForElement,
-} from "../../misc/testUtils";
+import { render, screen, fireEvent } from "../../misc/testUtils";
 import App from "../../App";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
@@ -17,6 +12,13 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 describe("the login page", () => {
+  test("renders at '/login' without crashing", () => {
+    render(<App />, { initialEntries: ["/login"] });
+
+    expect(screen.getByPlaceholderText("Username")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Login" }));
+  });
+
   test("can login the user", async () => {
     server.use(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -54,9 +56,9 @@ describe("the login page", () => {
       target: { value: "correct-pass" },
     });
 
-    fireEvent.click(screen.getByText("Submit"));
+    fireEvent.click(screen.getByRole("button", { name: "Login" }));
 
-    await waitForElement(() => screen.getByText(/goodyguts/)); // If this fails it might be because the expects in the server have failed
+    await screen.findByText(/goodyguts/); // If this fails it might be because the expects in the server have failed
 
     expect(screen.getByText(/Logout/)).toBeInTheDocument();
   });
@@ -84,9 +86,34 @@ describe("the login page", () => {
       target: { value: "causeserror'; DROP TABLE users;" },
     });
 
-    fireEvent.click(screen.getByText("Submit"));
+    fireEvent.click(screen.getByRole("button", { name: "Login" }));
 
-    await waitForElement(() => screen.getByText(/There was an error/)); // If this fails it might be because the expects in the server have failed
+    await screen.findByText(/There was an error/); // If this fails it might be because the expects in the server have failed
+
+    expect(screen.queryByText(/Logout/)).not.toBeInTheDocument();
+  });
+
+  test("can handle no internet", async () => {
+    server.use(
+      rest.post(baseUrl + "/api/auth/login", (_, res) => {
+        return res.networkError("The world is exploding.");
+      })
+    );
+
+    render(<App />, {
+      initialEntries: ["/login"],
+    });
+
+    fireEvent.change(screen.getByPlaceholderText("Username"), {
+      target: { value: "normalUsername" },
+    });
+    fireEvent.change(screen.getByPlaceholderText("Password"), {
+      target: { value: "secureProbably" },
+    });
+
+    fireEvent.click(screen.getByRole("button", { name: "Login" }));
+
+    await screen.findByText(/There was an error/); // If this fails it might be because the expects in the server have failed
 
     expect(screen.queryByText(/Logout/)).not.toBeInTheDocument();
   });
@@ -113,8 +140,48 @@ describe("the login page", () => {
       target: { value: "bad-pass" },
     });
 
-    fireEvent.click(screen.getByText("Submit"));
+    fireEvent.click(screen.getByRole("button", { name: "Login" }));
 
-    await waitForElement(() => screen.getByText(/AAAA/));
+    await screen.findByText(/AAAA/);
+  });
+
+  test("shows error if username and password are blank", async () => {
+    server.use(
+      rest.post(baseUrl + "/api/auth/login", () => {
+        fail("The webpage should never call the server.");
+      })
+    );
+    render(<App />, {
+      initialEntries: ["/login"],
+    });
+
+    fireEvent.click(screen.getByRole("button", { name: "Login" }));
+
+    expect(
+      screen.getByText(/You must enter a username and password/)
+    ).toBeInTheDocument();
+
+    fireEvent.change(screen.getByPlaceholderText("Username"), {
+      target: { value: "goodyguts" },
+    });
+
+    fireEvent.click(screen.getByRole("button", { name: "Login" }));
+
+    expect(
+      screen.getByText(/You must enter a username and password/)
+    ).toBeInTheDocument();
+
+    fireEvent.change(screen.getByPlaceholderText("Username"), {
+      target: { value: "" },
+    });
+    fireEvent.change(screen.getByPlaceholderText("Password"), {
+      target: { value: "correct-pass" },
+    });
+
+    fireEvent.click(screen.getByRole("button", { name: "Login" }));
+
+    expect(
+      screen.getByText(/You must enter a username and password/)
+    ).toBeInTheDocument();
   });
 });

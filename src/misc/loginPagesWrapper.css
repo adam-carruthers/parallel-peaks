@@ -1,0 +1,9 @@
+.box-login-pages {
+  width: 90%;
+  max-width: 340px;
+  padding: 40px;
+}
+
+.box-login-pages label {
+  margin-bottom: 3px;
+}

@@ -1,11 +1,13 @@
 import React from "react";
 
 import { Switch, Route } from "react-router";
-import RouteNeedLogin from "./routeNeedsLogin";
+import { RouteNeedLogin, RouteRedirectIfLoggedIn } from "./specialRoutes";
 
 import PageIndex from "../pageIndex/pageIndex";
 import PageLogin from "../pageLogin/pageLogin";
 import Page404 from "./page404";
+import PageSignUp from "../pageSignUp/pageSignUp";
+import PageConfirmEmail from "../pageSignUp/pageConfirmEmail";
 import PageCreateMatchEntry from "../pageCreateMatchEntry/pageCreateMatchEntry";
 
 const Routes = () => (
@@ -13,8 +15,15 @@ const Routes = () => (
     <Route exact path="/">
       <PageIndex />
     </Route>
-    <Route path="/login">
+
+    <RouteRedirectIfLoggedIn path="/login">
       <PageLogin />
+    </RouteRedirectIfLoggedIn>
+    <RouteRedirectIfLoggedIn path="/sign-up">
+      <PageSignUp />
+    </RouteRedirectIfLoggedIn>
+    <Route path="/confirm-email">
+      <PageConfirmEmail />
     </Route>
 
     <RouteNeedLogin path="/home">

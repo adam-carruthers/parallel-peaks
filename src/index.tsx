@@ -12,6 +12,9 @@ import * as serviceWorker from "./misc/serviceWorker";
 import { PersistGate } from "redux-persist/integration/react";
 import persistStore from "redux-persist/es/persistStore";
 
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+
 const persistor = persistStore(store);
 
 ReactDOM.render(
@@ -23,6 +26,7 @@ ReactDOM.render(
         </PersistGate>
       </Provider>
     </Router>
+    <ToastContainer position="bottom-right" />
   </React.StrictMode>,
   document.getElementById("root")
 );
