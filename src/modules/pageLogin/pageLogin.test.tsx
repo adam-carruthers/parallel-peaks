@@ -152,7 +152,7 @@ describe("the login page", () => {
 
   test("shows error if username and password are blank", async () => {
     server.use(
-      rest.post(baseUrl + "/api/auth/login", (req, res, ctx) => {
+      rest.post(baseUrl + "/api/auth/login", () => {
         fail("The webpage should never call the server.");
       })
     );

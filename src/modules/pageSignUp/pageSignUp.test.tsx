@@ -184,8 +184,7 @@ describe("the sign up page", () => {
 
   test("shows some errors without calling the server", async () => {
     server.use(
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      rest.post(baseUrl + "/api/auth/register", (req: any, res, ctx) => {
+      rest.post(baseUrl + "/api/auth/register", () => {
         fail("The server shouldn't even be called in this example.");
       })
     );
