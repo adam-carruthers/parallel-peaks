@@ -8,11 +8,9 @@ const Page404 = () => (
   <NotAllowedPage>
     <h1>404</h1>
     <p>Page not found. You appear to have taken a wrong turn...</p>
-    <div className="make-children-blocky">
-      <Link to="/" className="btn btn-warning btn-pp">
-        Go to the front page <i className="fas fa-arrow-right ml-1" />
-      </Link>
-    </div>
+    <Link to="/" className="btn btn-warning btn-pp pp-box-shadow-small">
+      Go to the front page <i className="fas fa-arrow-right ml-1" />
+    </Link>
   </NotAllowedPage>
 );
 
