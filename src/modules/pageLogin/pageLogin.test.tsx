@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  render,
-  screen,
-  fireEvent,
-  waitForElement,
-} from "../../misc/testUtils";
+import { render, screen, fireEvent } from "../../misc/testUtils";
 import App from "../../App";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
@@ -61,9 +56,9 @@ describe("the login page", () => {
       target: { value: "correct-pass" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: "Submit" }));
+    fireEvent.click(screen.getByRole("button", { name: "Login" }));
 
-    await waitForElement(() => screen.getByText(/goodyguts/)); // If this fails it might be because the expects in the server have failed
+    await screen.findByText(/goodyguts/); // If this fails it might be because the expects in the server have failed
 
     expect(screen.getByText(/Logout/)).toBeInTheDocument();
   });
@@ -91,9 +86,9 @@ describe("the login page", () => {
       target: { value: "causeserror'; DROP TABLE users;" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: "Submit" }));
+    fireEvent.click(screen.getByRole("button", { name: "Login" }));
 
-    await waitForElement(() => screen.getByText(/There was an error/)); // If this fails it might be because the expects in the server have failed
+    await screen.findByText(/There was an error/); // If this fails it might be because the expects in the server have failed
 
     expect(screen.queryByText(/Logout/)).not.toBeInTheDocument();
   });
@@ -116,9 +111,9 @@ describe("the login page", () => {
       target: { value: "secureProbably" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: "Submit" }));
+    fireEvent.click(screen.getByRole("button", { name: "Login" }));
 
-    await waitForElement(() => screen.getByText(/There was an error/)); // If this fails it might be because the expects in the server have failed
+    await screen.findByText(/There was an error/); // If this fails it might be because the expects in the server have failed
 
     expect(screen.queryByText(/Logout/)).not.toBeInTheDocument();
   });
@@ -145,9 +140,9 @@ describe("the login page", () => {
       target: { value: "bad-pass" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: "Submit" }));
+    fireEvent.click(screen.getByRole("button", { name: "Login" }));
 
-    await waitForElement(() => screen.getByText(/AAAA/));
+    await screen.findByText(/AAAA/);
   });
 
   test("shows error if username and password are blank", async () => {
@@ -160,7 +155,7 @@ describe("the login page", () => {
       initialEntries: ["/login"],
     });
 
-    fireEvent.click(screen.getByRole("button", { name: "Submit" }));
+    fireEvent.click(screen.getByRole("button", { name: "Login" }));
 
     expect(
       screen.getByText(/You must enter a username and password/)
@@ -170,7 +165,7 @@ describe("the login page", () => {
       target: { value: "goodyguts" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: "Submit" }));
+    fireEvent.click(screen.getByRole("button", { name: "Login" }));
 
     expect(
       screen.getByText(/You must enter a username and password/)
@@ -183,7 +178,7 @@ describe("the login page", () => {
       target: { value: "correct-pass" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: "Submit" }));
+    fireEvent.click(screen.getByRole("button", { name: "Login" }));
 
     expect(
       screen.getByText(/You must enter a username and password/)

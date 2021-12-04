@@ -4,7 +4,6 @@ import {
   preloadedStateLoggedInUser,
   render,
   screen,
-  waitForElement,
 } from "../../misc/testUtils";
 import App from "../../App";
 import { rest } from "msw";
@@ -96,7 +95,7 @@ describe("the routesNeedLogin component", () => {
     if (!loginButtonArrow) throw new Error("login arrow should be there");
     fireEvent.click(loginButtonArrow);
 
-    await waitForElement(() => screen.getByPlaceholderText("Username"));
+    await screen.findByPlaceholderText("Username");
 
     fireEvent.change(screen.getByPlaceholderText("Username"), {
       target: { value: "goodyguts" },
@@ -105,9 +104,9 @@ describe("the routesNeedLogin component", () => {
       target: { value: "correct-pass" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: "Submit" }));
+    fireEvent.click(screen.getByRole("button", { name: "Login" }));
 
-    await waitForElement(() => screen.getByText(/goodyguts/));
+    await screen.findByText(/goodyguts/);
 
     expect(testLocation?.pathname).toEqual("/home");
     expect(testLocation?.search).toEqual("?fakequery=abcd");
@@ -118,10 +117,9 @@ describe("the routesRedirectIfLoggedIn component", () => {
   test("doesn't redirect if you aren't logged in", () => {
     render(<App />, { initialEntries: ["/login"] });
 
-    expect(
-      (screen.getByRole("button", { name: "Submit" }) as HTMLInputElement).value
-    ).toEqual("Login");
+    expect(screen.getByRole("button", { name: "Login" })).toBeInTheDocument();
   });
+
   test("redirects and notifies user if they are logged in", async () => {
     const toastErrorSpy = jest.spyOn(toast, "error");
 
@@ -130,9 +128,7 @@ describe("the routesRedirectIfLoggedIn component", () => {
       preloadedState: preloadedStateLoggedInUser,
     });
 
-    await waitForElement(() =>
-      screen.getByText(/Exchange albums, hear new songs/)
-    );
+    await screen.findByText(/Exchange albums, hear new songs/);
 
     expect(toastErrorSpy).toHaveBeenCalledTimes(1);
     expect(toastErrorSpy.mock.calls[0][0]).toEqual(

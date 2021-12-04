@@ -1,11 +1,6 @@
 import React from "react";
 import App from "../../App";
-import {
-  fireEvent,
-  render,
-  screen,
-  waitForElement,
-} from "../../misc/testUtils";
+import { fireEvent, render, screen } from "../../misc/testUtils";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { baseUrl } from "../../data/apiUtils";
@@ -59,11 +54,9 @@ describe("the sign up page", () => {
       target: { value: "minecraft!!!" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: "Submit" }));
+    fireEvent.click(screen.getByRole("button", { name: "Sign Up" }));
 
-    await waitForElement(() =>
-      screen.getByText(/Exchange albums, hear new songs/)
-    );
+    await screen.findByText(/Exchange albums, hear new songs/);
 
     expect(screen.queryByText(/maxymoo/)).not.toBeInTheDocument();
 
@@ -101,12 +94,10 @@ describe("the sign up page", () => {
       target: { value: "minecraft!!!" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: "Submit" }));
+    fireEvent.click(screen.getByRole("button", { name: "Sign Up" }));
 
-    await waitForElement(() =>
-      screen.getByText(
-        /Something is wrong, check your answers and please try again later/
-      )
+    await screen.findByText(
+      /Something is wrong, check your answers and please try again later/
     );
   });
 
@@ -133,12 +124,10 @@ describe("the sign up page", () => {
       target: { value: "minecraft!!!" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: "Submit" }));
+    fireEvent.click(screen.getByRole("button", { name: "Sign Up" }));
 
-    await waitForElement(() =>
-      screen.getByText(
-        /There was a problem. Check your internet connection and try again/
-      )
+    await screen.findByText(
+      /There was a problem. Check your internet connection and try again/
     );
   });
 
@@ -172,9 +161,9 @@ describe("the sign up page", () => {
       target: { value: "password" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: "Submit" }));
+    fireEvent.click(screen.getByRole("button", { name: "Sign Up" }));
 
-    await waitForElement(() => screen.getByText(/Your mum smells/));
+    await screen.findByText(/Your mum smells/);
 
     expect(
       screen.getByText(/A user with that username already exists/)
@@ -201,9 +190,9 @@ describe("the sign up page", () => {
       target: { value: "passwordUnmatching" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: "Submit" }));
+    fireEvent.click(screen.getByRole("button", { name: "Sign Up" }));
 
-    await waitForElement(() => screen.getByText(/Required/));
+    await screen.findByText(/Required/);
 
     expect(screen.getByText(/Invalid email/)).toBeInTheDocument();
     expect(screen.getByText(/Passwords must match/)).toBeInTheDocument();

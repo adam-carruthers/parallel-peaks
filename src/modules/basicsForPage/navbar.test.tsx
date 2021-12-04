@@ -5,7 +5,6 @@ import {
   render,
   screen,
   fireEvent,
-  waitForElement,
 } from "../../misc/testUtils";
 import Navbar from "./navbar";
 
@@ -34,7 +33,7 @@ describe("the navbar", () => {
 
     fireEvent.click(screen.getByText(/Logout/));
 
-    await waitForElement(() => screen.getByText(/Exchange albums/));
+    await screen.findByText(/Exchange albums/);
 
     expect(screen.getAllByText(/Login/).length).toBeGreaterThanOrEqual(1);
     expect(screen.queryByText(/goodyguts/)).not.toBeInTheDocument();
