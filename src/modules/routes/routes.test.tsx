@@ -11,6 +11,7 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { baseUrl } from "../../data/apiUtils";
 import { Route } from "react-router";
+import { toast } from "react-toastify";
 
 describe("the routes", () => {
   test("render the index page when at the route '/'", () => {
@@ -110,5 +111,32 @@ describe("the routesNeedLogin component", () => {
 
     expect(testLocation?.pathname).toEqual("/home");
     expect(testLocation?.search).toEqual("?fakequery=abcd");
+  });
+});
+
+describe("the routesRedirectIfLoggedIn component", () => {
+  test("doesn't redirect if you aren't logged in", () => {
+    render(<App />, { initialEntries: ["/login"] });
+
+    expect(
+      (screen.getByRole("button", { name: "Submit" }) as HTMLInputElement).value
+    ).toEqual("Login");
+  });
+  test("redirects and notifies user if they are logged in", async () => {
+    const toastErrorSpy = jest.spyOn(toast, "error");
+
+    render(<App />, {
+      initialEntries: ["/login"],
+      preloadedState: preloadedStateLoggedInUser,
+    });
+
+    await waitForElement(() =>
+      screen.getByText(/Exchange albums, hear new songs/)
+    );
+
+    expect(toastErrorSpy).toHaveBeenCalledTimes(1);
+    expect(toastErrorSpy.mock.calls[0][0]).toEqual(
+      "You can't access that page if you are already logged in!"
+    );
   });
 });
