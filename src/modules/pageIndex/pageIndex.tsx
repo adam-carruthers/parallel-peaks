@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../data/hooks";
-import { isUserLoggedIn } from "../../data/userSlice";
+import { isUserLoggedIn, userMatchEntry } from "../../data/userSlice";
 
 import "./pageIndex.css";
 
@@ -9,6 +9,7 @@ import "./pageIndex.css";
 
 const PageIndexInner = () => {
   const userLoggedIn = useAppSelector(isUserLoggedIn);
+  const hasMatchEntry = !!useAppSelector(userMatchEntry);
 
   if (userLoggedIn) {
     return (
@@ -19,6 +20,14 @@ const PageIndexInner = () => {
         <Link to="/profile" className="btn btn-py btn-pp-ls option-index">
           See your profile <i className="fas fa-arrow-right ml-auto" />
         </Link>
+        {!hasMatchEntry && (
+          <Link
+            to="/create-match-entry"
+            className="btn btn-pg btn-pp-ls option-index"
+          >
+            Create match entry <i className="fas fa-arrow-right ml-auto" />
+          </Link>
+        )}
       </>
     );
   } else {

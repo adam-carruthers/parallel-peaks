@@ -8,6 +8,7 @@ import PageLogin from "../pageLogin/pageLogin";
 import Page404 from "./page404";
 import PageSignUp from "../pageSignUp/pageSignUp";
 import PageConfirmEmail from "../pageSignUp/pageConfirmEmail";
+import PageCreateMatchEntry from "../pageCreateMatchEntry/pageCreateMatchEntry";
 
 const Routes = () => (
   <Switch>
@@ -29,6 +30,9 @@ const Routes = () => (
       <div className="pp-first-section">
         <h1>HOME TO BE BUILT</h1>
       </div>
+    </RouteNeedLogin>
+    <RouteNeedLogin path="/create-match-entry">
+      <PageCreateMatchEntry />
     </RouteNeedLogin>
 
     <Route path="*">

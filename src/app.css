@@ -5,12 +5,12 @@
   --pastel-yellow: #ffc30f;
   --pastel-red: #ff5e53;
   --pastel-blue: #55adff;
-  --pastel-green: #78ff85;
+  --pastel-green: #a7d639;
   --pastel-black: #323232;
   --pastel-yellow-d: #b0a42d;
   --pastel-red-d: #bf453d;
   --pastel-blue-d: #326999;
-  --pastel-green-d: #37913c;
+  --pastel-green-d: #739425;
   --pastel-black-d: #131313;
   --pp-nav-height: 69px;
 }
@@ -114,6 +114,13 @@ body {
 
 .btn-group.pp-box-shadow-small .btn:not(:last-child) {
   box-shadow: 2px 0 #000;
+}
+
+.btn-pg {
+  background-color: var(--pastel-green);
+}
+.btn-pg:hover {
+  background-color: var(--pastel-green-d);
 }
 
 .btn-py {
