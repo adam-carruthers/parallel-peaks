@@ -14,7 +14,7 @@ import { Route } from "react-router";
 import { toast } from "react-toastify";
 
 describe("the routes", () => {
-  test("render the index page when at the route '/'", () => {
+  test("render the index page when at the route '/' without crashing", () => {
     render(<App />, { initialEntries: ["/"] });
 
     expect(

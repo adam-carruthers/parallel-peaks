@@ -72,7 +72,7 @@ export const registerApi = async (
     else
       throw new APIFormError({
         non_field_errors: [
-          "Something seems wrong, check your answers and please try again later.",
+          "Something is wrong, check your answers and please try again later.",
         ],
       });
   }
