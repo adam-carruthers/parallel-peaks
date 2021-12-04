@@ -5,13 +5,12 @@ import { APIError } from "../../data/apiUtils";
 import { useAppDispatch } from "../../data/hooks";
 import { loginApi } from "../../data/userApi";
 import { login } from "../../data/userSlice";
-
-import "./pageLogin.css";
+import LoginPagesWrapper from "../../misc/loginPagesWrapper";
 
 // TODO: Implement redirect if logged in
 // TODO: Implement forgot password
 
-const PageLoginInner = () => {
+const PageLogin = () => {
   const [loginStatus, setLoginStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
@@ -55,55 +54,49 @@ const PageLoginInner = () => {
   }, []);
 
   return (
-    <form onSubmit={onLoginSubmit}>
-      <fieldset disabled={loginStatus === "loading"}>
-        {loginStatus === "error" && (
-          <div className="pp-form-error text-danger mb-2">
-            <i className="fas fa-exclamation-triangle mr-1" /> {loginError}
+    <LoginPagesWrapper
+      pageName="Login"
+      topOfPageInfo={
+        <>
+          <span className="text-muted">Not got an account yet? </span>
+          <Link to="/sign-up">Sign up here.</Link>
+        </>
+      }
+    >
+      <form onSubmit={onLoginSubmit}>
+        <fieldset disabled={loginStatus === "loading"}>
+          {loginStatus === "error" && (
+            <div className="pp-form-error text-danger mb-2">
+              <i className="fas fa-exclamation-triangle mr-1" /> {loginError}
+            </div>
+          )}
+          <div className="form-group">
+            <input
+              ref={usernameRef}
+              className="form-control"
+              type="text"
+              placeholder="Username"
+            />
           </div>
-        )}
-        <div className="form-group">
-          <input
-            ref={usernameRef}
-            className="form-control"
-            type="text"
-            placeholder="Username"
-          />
-        </div>
-        <div className="form-group">
-          <input
-            ref={passwordRef}
-            className="form-control"
-            type="password"
-            placeholder="Password"
-          />
-        </div>
-        <div className="form-group">
-          <input
-            className="btn btn-primary btn-block"
-            type="submit"
-            value={loginStatus === "loading" ? "Loading..." : "Login"}
-          />
-        </div>
-      </fieldset>
-    </form>
+          <div className="form-group">
+            <input
+              ref={passwordRef}
+              className="form-control"
+              type="password"
+              placeholder="Password"
+            />
+          </div>
+          <div className="form-group">
+            <input
+              className="btn btn-primary btn-block"
+              type="submit"
+              value={loginStatus === "loading" ? "Loading..." : "Login"}
+            />
+          </div>
+        </fieldset>
+      </form>
+    </LoginPagesWrapper>
   );
 };
-
-const PageLogin = () => (
-  <section className="pp-first-section bg-blue-waves d-flex flex-column align-items-center">
-    <div className="flex-grow-1 p-3" />
-    <div className="box-login pp-box-shadow bg-white">
-      <h1 className="pp-box-shadow pp-brand-shadow bg-primary big-logo">PP</h1>
-      <div className="mb-3 text-center text-small">
-        <h1 className="mb-3">Login</h1>
-        <span className="text-muted">Not got an account yet? </span>
-        <Link to="/sign-up">Sign up here.</Link>
-      </div>
-      <PageLoginInner />
-    </div>
-    <div className="flex-grow-1 p-4" />
-  </section>
-);
 
 export default PageLogin;

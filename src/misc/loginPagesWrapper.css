@@ -1,10 +1,9 @@
-.box-sign-up {
+.box-login-pages {
   width: 90%;
   max-width: 340px;
   padding: 40px;
 }
 
-.box-sign-up label {
+.box-login-pages label {
   margin-bottom: 3px;
-  color: var(--dark);
 }
