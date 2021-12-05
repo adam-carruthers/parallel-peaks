@@ -43,7 +43,9 @@ const PageLogin = () => {
         console.error(e);
         setLoginStatus("error");
         if (e instanceof APIError) {
-          setLoginError(e.message);
+          if (e.message == "Unable to log in with provided credentials.")
+            setLoginError("Username and/or password incorrect.");
+          else setLoginError(e.message);
         } else {
           setLoginError(
             "There was an error, check your internet and try again."
