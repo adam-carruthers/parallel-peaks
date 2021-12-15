@@ -1,5 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import "./pageCreateMatchEntry.css";
+import PaneAlbumReccomend from "./paneAlbumRecommend";
 
 const PageCreateMatchEntry = () => {
   const totalPages = 2;
@@ -27,31 +28,11 @@ const PageCreateMatchEntry = () => {
           <i className="fas fa-chevron-right" />
         </button>
         <div
-          className="cme-pages-container"
+          className="cme-panes-container"
           style={{ marginLeft: `-${currentPosition * 100}vw` }}
         >
-          <div className="cme-page">
-            <div className="flex-grow-1 p-3" />
-            <div className="cme-box">
-              <div className="cme-page-body">
-                <h5 className="text-secondary">Question 1/5</h5>
-                <div className="cme-fancy-h">
-                  <h1>Which album do you recommend?</h1>
-                </div>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="e.g: Lorde Melodrama"
-                />
-              </div>
-              <div className="cme-footer">
-                Create Matching Entry{" "}
-                <i className="text-nowrap">- Question 1/5</i>
-              </div>
-            </div>
-            <div className="flex-grow-1 p-3" />
-          </div>
-          <div className="cme-page">
+          <PaneAlbumReccomend />
+          <div className="cme-pane">
             <div className="flex-grow-1 p-3" />
             <div className="cme-box">
               <h1>Create matching entry</h1>

@@ -55,7 +55,7 @@
   }
 }
 
-.cme-pages-container {
+.cme-panes-container {
   display: flex;
   flex-direction: row;
 
@@ -66,7 +66,7 @@
   transition: margin 1s;
 }
 
-.cme-page {
+.cme-pane {
   min-height: calc(100vh - var(--pp-nav-height));
   flex: 0 0 100vw;
 
@@ -88,7 +88,7 @@
   }
 }
 
-.cme-page-body {
+.cme-pane-body {
   padding: 20px;
 }
 
@@ -119,4 +119,9 @@
   padding: 5px 10px;
   text-align: right;
   background: #eee;
+}
+
+.album-search-list {
+  max-height: max(calc(50vh - 300px), 350px);
+  overflow-y: scroll;
 }

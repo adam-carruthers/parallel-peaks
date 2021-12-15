@@ -1,22 +1,23 @@
 .section-1-index {
-    background: url(bgVinyl.jpg) right / cover no-repeat;
-    padding: max(20vh, 110px) max(5%, 30px) 20vh;
-    min-height: 100vh;
+  background: url(bgVinyl.jpg) right / cover no-repeat;
+  padding: max(20vh, 110px) max(5%, 30px) 20vh;
+  min-height: 100vh;
 }
 
 .section-1-index > h1 {
-    margin-bottom: 40px;
-    max-width: 428px;
-    padding: 10px;
+  margin-bottom: 40px;
+  max-width: 428px;
+  padding: 10px;
 }
 
 .section-1-index .option-index {
-    font-size: 25px;
-    font-family: 'Bree Serif', serif;
-    margin-bottom: 20px;
-    max-width: 500px;
-    padding: 10px;
-    box-shadow: 7px 7px;
-    display: flex;
-    align-items: baseline;
+  font-size: 25px;
+  font-family: "Bree Serif", serif;
+  margin-bottom: 20px;
+  max-width: 500px;
+  padding: 10px;
+  box-shadow: 7px 7px;
+  display: flex;
+  align-items: baseline;
+  text-align: left;
 }

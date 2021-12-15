@@ -35,6 +35,10 @@ body {
   background: var(--pastel-green);
 }
 
+.bg-lightish {
+  background: #e8e8e9;
+}
+
 .bg-blue-waves {
   background: url("./misc/just-waves.png");
 }
@@ -90,7 +94,6 @@ body {
   display: block;
   text-align: center;
   border-radius: 0.25em;
-  font-size: 15px;
 }
 
 .text-small {

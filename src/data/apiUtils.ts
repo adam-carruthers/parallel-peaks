@@ -1,4 +1,4 @@
-export const baseUrl = "http://127.0.0.1:8000";
+export const baseUrl = "http://192.168.0.97:8000"; //"http://127.0.0.1:8000";
 
 export class APIError extends Error {
   // Class to mark that an error has a message printable to the end user
