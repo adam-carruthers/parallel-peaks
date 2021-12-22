@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { albumSearchApi, SearchedAlbum } from "../../data/albumApi";
 import { APIError } from "../../data/apiUtils";
+import ScrollOnMountDiv from "../../misc/scrollOnMountDiv";
 import AlbumSearchResult from "./albumSearchResult";
 
 const PaneAlbumReccomend = () => {
@@ -75,19 +76,32 @@ const PaneAlbumReccomend = () => {
           </button>
           <div className="text-center">
             <button className="btn btn-link p-0 mb-1">
-              Click here to skip searching and enter details manually.
+              {searchedAlbums === null
+                ? "Click here to skip searching and enter details manually."
+                : "Can't find what you're looking for? Click here to enter the details manually (no search)."}
             </button>
           </div>
-          {searchedAlbums && (
-            <div className="text-break">
-              Choose from albums ({searchedAlbums.length}&nbsp;found):
-              <div className="album-search-list pr-1 mt-1">
-                {searchedAlbums.map((album) => (
-                  <AlbumSearchResult album={album} key={album.url} />
-                ))}
+          {searchedAlbums &&
+            (searchedAlbums.length === 0 ? (
+              <div className="text-center py-3">
+                <b>Couldn&apos;t find any albums for that search.</b> <br />
+                Do a new search or enter the details manually.
               </div>
-            </div>
-          )}
+            ) : (
+              <div className="text-break">
+                Choose from albums ({searchedAlbums.length}&nbsp;found):
+                <ScrollOnMountDiv>
+                  <div className="album-search-list pr-1 mt-1 mb-3">
+                    {searchedAlbums.map((album) => (
+                      <AlbumSearchResult album={album} key={album.url} />
+                    ))}
+                  </div>
+                </ScrollOnMountDiv>
+                <button className="btn btn-danger btn-block" disabled>
+                  Choose an album to be able to carry on
+                </button>
+              </div>
+            ))}
         </div>
         <div className="cme-footer">
           Create Matching Entry <i className="text-nowrap">- Question 1/5</i>
