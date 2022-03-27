@@ -1,37 +1,41 @@
 import React, { useState } from "react";
+import { SearchedAlbum } from "../../data/albumApi";
 import "./pageCreateMatchEntry.css";
 import PaneAlbumReccomend from "./paneAlbumRecommend";
 
 const PageCreateMatchEntry = () => {
   const totalPages = 2;
-  const [currentPosition, setCurrentPosition] = useState<number>(0);
+  const [currentPane, setCurrentPane] = useState<number>(0);
 
-  const scrollByNumberOfPages = (change: number) => {
-    setCurrentPosition(currentPosition + change);
-  };
+  const [selectedAlbum, setSelectedAlbum] = useState<SearchedAlbum | null>(
+    null
+  );
 
   return (
     <div className="pp-first-section bg-blue-waves">
       <div className="cme-outer">
         <button
           className="btn cme-arrow cme-arrow-left"
-          onClick={() => scrollByNumberOfPages(-1)}
-          disabled={currentPosition === 0}
+          onClick={() => setCurrentPane(currentPane - 1)}
+          disabled={currentPane === 0}
         >
           <i className="fas fa-chevron-left" />
         </button>
         <button
           className="btn cme-arrow cme-arrow-right"
-          onClick={() => scrollByNumberOfPages(1)}
-          disabled={currentPosition === totalPages - 1}
+          onClick={() => setCurrentPane(currentPane + 1)}
+          disabled={currentPane === totalPages - 1}
         >
           <i className="fas fa-chevron-right" />
         </button>
         <div
           className="cme-panes-container"
-          style={{ marginLeft: `-${currentPosition * 100}vw` }}
+          style={{ marginLeft: `-${currentPane * 100}vw` }}
         >
-          <PaneAlbumReccomend />
+          <PaneAlbumReccomend
+            selectedAlbum={selectedAlbum}
+            setSelectedAlbum={setSelectedAlbum}
+          />
           <div className="cme-pane">
             <div className="flex-grow-1 p-3" />
             <div className="cme-box">

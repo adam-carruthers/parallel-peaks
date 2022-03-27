@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { SearchedAlbum } from "../../data/albumApi";
 import AlbumSearch from "./albumSearch";
 import ManualAlbum from "./manualAlbum";
 
-const PaneAlbumReccomend = () => {
+const PaneAlbumReccomend: React.FC<{
+  selectedAlbum: SearchedAlbum | null;
+  setSelectedAlbum: (album: SearchedAlbum | null) => void;
+}> = () => {
   const [usingManual, setUsingManual] = useState<boolean>(false);
 
   return (

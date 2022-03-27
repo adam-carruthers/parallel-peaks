@@ -4,7 +4,11 @@ import { APIError } from "../../data/apiUtils";
 import ScrollOnMountDiv from "../../misc/scrollOnMountDiv";
 import AlbumSearchResult from "./albumSearchResult";
 
-const AlbumSearch: React.FC<{ useManual: () => void }> = ({ useManual }) => {
+const AlbumSearch: React.FC<{
+  useManual: () => void;
+  selectedAlbum: SearchedAlbum | null;
+  setSelectedAlbum: (album: SearchedAlbum | null) => void;
+}> = ({ useManual }) => {
   const recommendationRef = useRef<HTMLInputElement>(null);
 
   const [loading, setLoadingState] = useState<boolean>(false);
